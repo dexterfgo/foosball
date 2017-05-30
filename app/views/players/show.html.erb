@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @player.name %>
+  Games Played:
+  <%= PlayerResult.where(player: @player).games_played %><br/>
+  Wins:
+  <%= PlayerResult.where(player: @player).wins %><br/>
+  Losses:
+  <%= PlayerResult.where(player: @player).losses %><br/> 
+  <h2>Recent Opponents:</h2>
+  <table>
+	  <thead>
+	    <tr>
+	      <th>Opponents</th>
+	      <th>Wins Against This Opponent</th>
+	      <th>Losses Against This Opponent</th>
+	    </tr>
+	  </thead>
+
+	  <tbody>
+	    <% @all_players.each do |opponent| %>
+	      <tr>
+	        <td><%= link_to opponent.name, opponent %></td>
+	        <td><%= PlayerResult.where(player: @player).against(opponent).wins %></td>
+	        <td><%= PlayerResult.where(player: @player).against(opponent).losses %></td>
+	      </tr>
+	    <% end %>
+	  </tbody>
+  </table>
+</p>
+
+<%= link_to 'Edit', edit_player_path(@player) %> |
+<%= link_to 'Back', players_path %> <%= link_to 'Home', users_path %> 

@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Games</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Event Date</th>
+      <th>White Team</th>
+      <th></th>
+      <th>Black Team</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @games.each do |game| %>
+      <tr>
+        <td><%= link_to game.created_at, game %></td>
+        <td>
+          <% if game.result == 1 %><strong><%end%>
+          <%= game.white_team_first_player.name %>
+          <% if game.white_team_second_player %> and <%=game.white_team_second_player.name%> <% end %>
+          <% if game.result == 1 %></strong><%end%>
+        </td>
+        <td> VS </td>
+        <td>
+          <% if game.result == 2 %><strong><%end%>
+          <%= game.black_team_first_player.name %>
+          <% if game.black_team_second_player %> and <%=game.black_team_second_player.name %> <% end %>
+          <% if game.result == 2 %></strong><%end%>   
+        </td>
+        <!-- <td><%#= link_to 'X', game, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Home', users_path %> <%= link_to 'New Game', new_game_path %> <%= link_to 'Register New Player', new_player_path %>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  white_team: 1
+  black_team: 1
+  game_title: MyString
+
+two:
+  white_team: 1
+  black_team: 1
+  game_title: MyString

@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong><%= @game.game_title %> (<%= @game.created_at %>)</strong>
+</p>
+<p>
+  <strong>White Team<%=" (WINNERS!!!)" if @game.result == 1 %>:</strong>
+  <%= @game.white_team_first_player.name %>
+  <%= (" and " + @game.white_team_second_player.name) if @game.white_team_second_player.present? %>
+</p>
+
+<p>
+  <strong>Black Team<%=" (WINNERS!!!)" if @game.result == 2 %>:</strong>
+  <%= @game.black_team_first_player.name %>
+  <%= (" and " + @game.black_team_second_player.name) if @game.black_team_second_player.present? %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_game_path(@game) %> |
+<%= link_to 'Home', users_path %> 
+<%= link_to 'Back', games_path %>

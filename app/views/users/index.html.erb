@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Dexy's Foosball Bulletin</h1>
+<!--<h2>Search Participant: <%#= text_field_tag(:search_player_name) %> <%= submit_tag("Find") %></h2> -->
+<%= link_to 'Home', users_path %> <%= link_to 'New Game', new_game_path %> <%= link_to 'Register New Player', new_player_path %>
+<h2>Hall of Fame</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Player Name</th>
+      <th>Games Played</th>
+      <th>Games Won</th>
+      <th>Win Rate</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @top_five_players.each do |player| %>
+      <tr>
+        <td><%= link_to player.name, player %></td>
+        <td><%= PlayerResult.where(player: player).games_played %></td>
+        <td><%= PlayerResult.where(player: player).wins %></td>
+        <td><%= (PlayerResult.where(player: player).wins.to_f / PlayerResult.where(player: player).games_played.to_f) * 100 %> %</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2>Hall of Shame</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Player Name</th>
+      <th>Games Played</th>
+      <th>Games Lost</th>
+      <th>Loss Rate</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bottom_five_players.each do |player| %>
+      <tr>
+        <td><%= player.name %></td>
+        <td><%= PlayerResult.where(player: player).games_played %></td>
+        <td><%= PlayerResult.where(player: player).losses %></td>
+        <td><%=(PlayerResult.where(player: player).losses.to_f / PlayerResult.where(player: player).games_played.to_f) * 100 %> %</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+

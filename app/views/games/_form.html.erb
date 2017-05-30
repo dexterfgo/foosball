@@ -1,0 +1,71 @@
+<%= form_with(model: game, local: true) do |form| %>
+  <% if game.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(game.errors.count, "error") %> prohibited this game from being saved:</h2>
+
+      <ul>
+      <% game.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= form.label :game_title %>
+    <% if params[:game_title].nil? %>
+      <%= form.text_field :game_title, id: :game_game_title, value: ('Match ' + game.id.to_s) %>
+    <% else %>
+      <%= form.text_field :game_title, id: :game_game_title %>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :white_team_first_player %>
+      <% if params[:white_team_first_player].present? %>
+            <%= select(:white_team_first_player, :white_team_first_player_id, options_from_collection_for_select(@all_players, 'id', 'name', :selected => params[:white_team_first_player][:white_team_first_player_id]), include_blank: 'No Participant') %>
+      <% else %>
+            <%= select(:white_team_first_player, :white_team_first_player_id, options_from_collection_for_select(@all_players, 'id', 'name'), include_blank: 'No Participant') %>
+      <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :white_team_second_player %>
+      <% if params[:white_team_second_player].present? %>
+            <%= select(:white_team_second_player, :white_team_second_player_id, options_from_collection_for_select(@all_players, 'id', 'name', :selected => params[:white_team_second_player][:white_team_second_player_id]), include_blank: 'No Participant') %>
+      <% else %>
+            <%= select(:white_team_second_player, :white_team_second_player_id, options_from_collection_for_select(@all_players, 'id', 'name'), include_blank: 'No Participant') %>
+      <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :black_team_first_player %>
+      <% if params[:black_team_first_player].present? %>
+            <%= select(:black_team_first_player, :black_team_first_player_id, options_from_collection_for_select(@all_players, 'id', 'name', :selected => params[:black_team_first_player][:black_team_first_player_id]), include_blank: 'No Participant') %>
+      <% else %>
+            <%= select(:black_team_first_player, :black_team_first_player_id, options_from_collection_for_select(@all_players, 'id', 'name'), include_blank: 'No Participant') %>
+      <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :black_team_second_player %>
+      <% if params[:black_team_second_player].present? %>
+            <%= select(:black_team_second_player, :black_team_second_player_id, options_from_collection_for_select(@all_players, 'id', 'name', :selected => params[:black_team_second_player][:black_team_second_player_id]), include_blank: 'No Participant') %>
+      <% else %>
+            <%= select(:black_team_second_player, :black_team_second_player_id, options_from_collection_for_select(@all_players, 'id', 'name'), include_blank: 'No Participant') %>
+      <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :result %>
+    <% if params[:result].present? %>
+       <%= select(:result, :result_id, [['Tied',0], ['White Team Wins',1], ['Black Team Wins',2]], :selected => params[:result][:result_id]) %>
+    <% else %>
+       <%= select(:result, :result_id, [['Tied',0], ['White Team Wins',1], ['Black Team Wins',2]]) %>
+    <% end %>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
