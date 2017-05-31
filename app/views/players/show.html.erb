@@ -13,7 +13,7 @@
   <%= PlayerResult.where(player: @player).losses %><t/>
   Overall Loss Rate:
   <%= number_with_precision(((PlayerResult.where(player: @player).losses.to_f / PlayerResult.where(player: @player).games_played.to_f) * 100), precision: 2) unless (PlayerResult.where(player: @player).games_played == 0) %> %<br/> 
-  <h2>Recent Opponents:</h2>
+  <h2>All Opponents:</h2>
   <table>
 	  <thead>
 	    <tr>
