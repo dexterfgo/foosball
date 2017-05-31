@@ -20,7 +20,7 @@
         <td><%= link_to player.name, player %></td>
         <td><%= PlayerResult.where(player: player).games_played %></td>
         <td><%= PlayerResult.where(player: player).wins %></td>
-        <td><%= (PlayerResult.where(player: player).wins.to_f / PlayerResult.where(player: player).games_played.to_f) * 100 %> %</td>
+        <td><%= ((PlayerResult.where(player: player).wins.to_f / PlayerResult.where(player: player).games_played.to_f) * 100) unless (PlayerResult.where(player: player).games_played == 0) %> %</td>
       </tr>
     <% end %>
   </tbody>
@@ -43,7 +43,7 @@
         <td><%= player.name %></td>
         <td><%= PlayerResult.where(player: player).games_played %></td>
         <td><%= PlayerResult.where(player: player).losses %></td>
-        <td><%=(PlayerResult.where(player: player).losses.to_f / PlayerResult.where(player: player).games_played.to_f) * 100 %> %</td>
+        <td><%= ((PlayerResult.where(player: player).losses.to_f / PlayerResult.where(player: player).games_played.to_f) * 100) unless (PlayerResult.where(player: player).games_played == 0) %> %</td>
       </tr>
     <% end %>
   </tbody>

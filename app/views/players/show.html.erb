@@ -14,8 +14,11 @@
 	  <thead>
 	    <tr>
 	      <th>Opponents</th>
+	      <th>Games Played</th>
 	      <th>Wins Against This Opponent</th>
+	      <th>Win Rating</th>
 	      <th>Losses Against This Opponent</th>
+	      <th>Loss Rating</th>
 	    </tr>
 	  </thead>
 
@@ -23,8 +26,10 @@
 	    <% @all_players.each do |opponent| %>
 	      <tr>
 	        <td><%= link_to opponent.name, opponent %></td>
+	        <td><%= PlayerResult.where(player: @player).against(opponent).games_played %></td>
 	        <td><%= PlayerResult.where(player: @player).against(opponent).wins %></td>
-	        <td><%= PlayerResult.where(player: @player).against(opponent).losses %></td>
+	        <td><%= ((PlayerResult.where(player: @player).against(opponent).wins.to_f / PlayerResult.where(player: @player).against(opponent).games_played.to_f) * 100) unless (PlayerResult.where(player: @player).against(opponent).games_played == 0) %> %</td>
+	        <td><%= ((PlayerResult.where(player: @player).against(opponent).losses.to_f / PlayerResult.where(player: @player).against(opponent).games_played.to_f) * 100) unless (PlayerResult.where(player: @player).against(opponent).games_played == 0) %> %</td>
 	      </tr>
 	    <% end %>
 	  </tbody>
