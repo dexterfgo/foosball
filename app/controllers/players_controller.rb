@@ -12,6 +12,11 @@ class PlayersController < ApplicationController
   # GET /players/1.json
   def show
     @all_opponents = Player.opponents(@player)
+    @player_games_played = PlayerResult.where(player: @player).games_played
+    @player_wins = PlayerResult.where(player: @player).wins
+    @player_losses = PlayerResult.where(player: @player).losses
+    @player_overall_win_rate = ((@player_wins.to_f / @player_games_played.to_f) * 100) unless (@player_games_played == 0)
+    @player_overall_loss_rate = ((@player_losses.to_f / @player_games_played.to_f) * 100) unless (@player_games_played == 0)
   end
 
   # GET /players/new

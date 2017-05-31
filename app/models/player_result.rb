@@ -13,6 +13,9 @@ class PlayerResult < ApplicationRecord
 	scope :wins, -> {where(won: true).games_played}
 	scope :losses, -> {where(won: false).games_played}
 	scope :team_with, -> (player) {where(teammate: player)}
+	scope :linegraph, -> { distinct.group_by_day(:created_at, range: 1.weeks.ago.midnight..Time.now).count}
+	scope :linegraph_wins, -> { where(won: true).distinct.group_by_day(:created_at, range: 1.weeks.ago.midnight..Time.now).count}
+	scope :linegraph_losses, -> { where(won: false).distinct.group_by_day(:created_at, range: 1.weeks.ago.midnight..Time.now).count}
 
 	def percent_of(n)
     	self.to_f / n.to_f * 100.0

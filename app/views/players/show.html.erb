@@ -4,15 +4,25 @@
   <strong>Name:</strong>
   <%= @player.name %><br/>
   Games Played:
-  <%= PlayerResult.where(player: @player).games_played %><br/>
+  <%= @player_games_played %><br/>
   Wins:
-  <%= PlayerResult.where(player: @player).wins %><t/>
+  <%= @player_wins %><t/>
   Overall Win Rate:
-  <%= number_with_precision(((PlayerResult.where(player: @player).wins.to_f / PlayerResult.where(player: @player).games_played.to_f) * 100), precision: 2) unless (PlayerResult.where(player: @player).games_played == 0) %> %<br/>
+  <%= @player_overall_win_rate %> %<br/>
   Losses:
-  <%= PlayerResult.where(player: @player).losses %><t/>
+  <%= @player_losses %><t/>
   Overall Loss Rate:
-  <%= number_with_precision(((PlayerResult.where(player: @player).losses.to_f / PlayerResult.where(player: @player).games_played.to_f) * 100), precision: 2) unless (PlayerResult.where(player: @player).games_played == 0) %> %<br/> 
+  <%= @player_overall_loss_rate %> %<br/>
+
+  <!-- <h2>Win/Loss Rate Since Player Registered:</h2> -->
+  <%#= line_chart (PlayerResult.where(playerid: @player.id).map { |result| {name: result.won, data: result.feats.linegraph}}) %>
+
+  <h2>Win Rate Since Player Registered:</h2>
+  <%= line_chart (PlayerResult.where(playerid: @player.id).linegraph_wins) %>
+
+  <h2>Loss Rate Since Player Registered:</h2>
+  <%= line_chart (PlayerResult.where(playerid: @player.id).linegraph_losses) %>
+
   <h2>All Opponents:</h2>
   <table>
 	  <thead>

@@ -53,4 +53,6 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'gruff'
+# Now for some cool stuff
+gem 'groupdate' # For grouping dates. Will come in handy when we scale this app.
+gem 'chartkick' # For adding line graphs
