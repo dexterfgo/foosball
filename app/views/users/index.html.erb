@@ -2,7 +2,7 @@
 
 <h1>Dexy's Foosball Bulletin</h1>
 <!--<h2>Search Participant: <%#= text_field_tag(:search_player_name) %> <%= submit_tag("Find") %></h2> -->
-<%= link_to 'Home', users_path %> <%= link_to 'New Game', new_game_path %> <%= link_to 'Register New Player', new_player_path %>
+<%= link_to 'Home', players_path %> <%= link_to 'New Game', new_game_path %> <%= link_to 'Register New Player', new_player_path %>
 <h2>Hall of Fame</h2>
 <table>
   <thead>
@@ -20,7 +20,7 @@
         <td><%= link_to player.name, player %></td>
         <td><%= PlayerResult.where(player: player).games_played %></td>
         <td><%= PlayerResult.where(player: player).wins %></td>
-        <td><%= ((PlayerResult.where(player: player).wins.to_f / PlayerResult.where(player: player).games_played.to_f) * 100) unless (PlayerResult.where(player: player).games_played == 0) %> %</td>
+        <td><%= number_with_precision(((PlayerResult.where(player: player).wins.to_f / PlayerResult.where(player: player).games_played.to_f) * 100), precision: 2) unless (PlayerResult.where(player: player).games_played == 0) %> %</td>
       </tr>
     <% end %>
   </tbody>
@@ -43,7 +43,7 @@
         <td><%= player.name %></td>
         <td><%= PlayerResult.where(player: player).games_played %></td>
         <td><%= PlayerResult.where(player: player).losses %></td>
-        <td><%= ((PlayerResult.where(player: player).losses.to_f / PlayerResult.where(player: player).games_played.to_f) * 100) unless (PlayerResult.where(player: player).games_played == 0) %> %</td>
+        <td><%= number_with_precision(((PlayerResult.where(player: player).losses.to_f / PlayerResult.where(player: player).games_played.to_f) * 100), precision: 2) unless (PlayerResult.where(player: player).games_played == 0) %> %</td>
       </tr>
     <% end %>
   </tbody>

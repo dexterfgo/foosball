@@ -4,13 +4,14 @@ class PlayersController < ApplicationController
   # GET /players
   # GET /players.json
   def index
-    @players = Player.all
+    @top_five_players = Player.all
+    @bottom_five_players = Player.all
   end
 
   # GET /players/1
   # GET /players/1.json
   def show
-    @all_players = Player.all
+    @all_opponents = Player.opponents(@player)
   end
 
   # GET /players/new

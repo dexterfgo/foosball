@@ -4,9 +4,6 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
-    @top_five_players = Player.all
-    @bottom_five_players = Player.all
   end
 
   # GET /users/1
