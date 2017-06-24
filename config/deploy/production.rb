@@ -60,4 +60,6 @@
 #     # password: "please use keys"
 #   }
 
-server '54.79.61.87', user: 'deploy', roles: %w{web app db}
+# https://ap-southeast-2.console.aws.amazon.com/ec2/v2/home?region=ap-southeast-2#Instances:sort=instanceId
+# IPV4 Public IP
+server '13.54.52.28', user: 'deploy', roles: %w{web app db}
