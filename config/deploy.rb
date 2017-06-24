@@ -1,7 +1,7 @@
 # config valid only for current version of Capistrano
 lock "3.8.1"
 
-set :application, "FoosballRankingSystem"
+set :application, "foosball"
 set :repo_url, "git@github.com:dexterfgo/foosball.git"
 
 set :branch, :master
