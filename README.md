@@ -47,7 +47,15 @@ b. Bonus goals:
 
 For full list of required gems, see [Gemfile](https://raw.githubusercontent.com/dexterfgo/foosball/master/Gemfile).
 
-### Deployment (Local Launch)
+### Usage
+
+#### Option A: AWS EC2
+
+- If you don't need to do a local launch, an instance of the app is deployed on [Amazon EC2](http://ec2-52-64-162-178.ap-southeast-2.compute.amazonaws.com/). Just [follow this link](http://ec2-52-64-162-178.ap-southeast-2.compute.amazonaws.com/) to run that instance.
+
+#### Option B: Local Launch
+
+- If you want to setup a local instance for testing and tweaks, follow the following steps.
 
 - To launch app locally, launch your terminal.
 	- Clone the foosball workspace.
