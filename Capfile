@@ -19,6 +19,8 @@ require 'capistrano/bundler'
 require 'capistrano/rvm'
 require 'capistrano/rails/assets' # for asset handling add
 require 'capistrano/rails/migrations' # for running migrations
+require 'capistrano/rails/console'
+require 'capistrano/rails/collection'
 require 'capistrano/puma'
 install_plugin Capistrano::Puma
 
